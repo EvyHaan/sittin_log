@@ -11,11 +11,13 @@
         <h1>Sittin' Log</h1>
         <nav class='navigation'>
             <ul>
-                <li><a href="#">HOME</a></li>
-                <li><a href="#">ADMIN</a></li>
-                <li><a href="#">LOGIN</a></li>
-                <li><a href="#">SIGN UP</a></li>
-                <li><a href="#">LOGOUT</a></li>
+                <li><a href="{% url 'home' %}">HOME</a></li>
+
+                <li><a href="{% url 'admin:index' %}">ADMIN</a></li>
+
+                <li><a href="{% url 'login' %}">LOGIN</a></li>
+                <li><a href="{% url 'django_registration_register' %}">SIGN UP</a></li>
+                <li><a href="{% url 'logout' %}">LOGOUT</a></li>
             </ul>
         </nav>
     </header>
