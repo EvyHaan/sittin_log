@@ -12,12 +12,15 @@
         <nav class='navigation'>
             <ul>
                 <li><a href="{% url 'home' %}">HOME</a></li>
-
+                {% if user.is_authenticated %}
+                {% if user.is_superuser %}
                 <li><a href="{% url 'admin:index' %}">ADMIN</a></li>
-
-                <li><a href="{% url 'login' %}">LOGIN</a></li>
-                <li><a href="{% url 'django_registration_register' %}">SIGN UP</a></li>
+                {% endif %}
                 <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}">SIGN IN</a></li>
+                <li><a href="{% url 'django_registration_register' %}">SIGN UP</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
