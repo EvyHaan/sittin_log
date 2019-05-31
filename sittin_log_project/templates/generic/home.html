@@ -5,5 +5,10 @@ Sittin' Log - HOME
 {% endblock title %}
 
 {% block content %}
+{% if user.is_authenticated %}
+This will have all the pets!
+{% else %}
 Hello, World!
+{% endif %}
+
 {% endblock content %}
