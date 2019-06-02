@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Family(models.Model):
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name=family, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='family', null=True)
 
     family_name = models.CharField(max_length=48)
     family_address = models.CharField(max_length=255)
@@ -47,14 +47,14 @@ class Pet(models.Model):
         ('rodent', 'Rodent'),
     ]
 
-    family = models.ForeignKey(Family, on_delete=models.CASCADE, related_name=pet, null=True)
+    family = models.ForeignKey(Family, on_delete=models.CASCADE, related_name='pet', null=True)
 
     pet_name = models.CharField(max_length=48)
     pet_photo_url = models.URLField(max_length=500)
     bio = models.CharField(max_length=255)
 
     animal_type = models.CharField(choices=TYPES, default='Animal', max_length=48)
-    age = models.IntegerField(max_length=2)
+    age = models.IntegerField()
     birthday_adoptiversary = models.CharField(max_length=48)
 
     feeding_notes = models.CharField(max_length=500)
@@ -69,14 +69,14 @@ class Pet(models.Model):
         return f'{self.pet_name}, {self.family}\'s {self.animal_type}'
 
 
-class Household(models.Model):
+# class Household(models.Model):
 
-    family = models.ForeignKey(Family, on_delete=models.CASCADE, related_name=pet, null=True)
+#     family = models.ForeignKey(Family, on_delete=models.CASCADE, related_name='pet', null=True)
 
-    home_care_notes = models.CharField(max_length=500)
+#     home_care_notes = models.CharField(max_length=500)
 
-    def __repr__(self):
-        return f'<{self.family}\'s home>'
+#     def __repr__(self):
+#         return f'<{self.family}\'s home>'
 
-    def __str__(self):
-        return f'{self.family}\'s home'
+#     def __str__(self):
+#         return f'{self.family}\'s home'

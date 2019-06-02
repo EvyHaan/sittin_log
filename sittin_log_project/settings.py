@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sittin_log_project',
+    'sittin_log_app',
 ]
 
 MIDDLEWARE = [

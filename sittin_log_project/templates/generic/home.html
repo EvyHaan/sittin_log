@@ -5,10 +5,23 @@ Sittin' Log - HOME
 {% endblock title %}
 
 {% block content %}
+
 {% if user.is_authenticated %}
-This will have all the pets!
+
+{% for pet in pets %}
+<ul>
+    <li>
+        <div>
+            <img src="{{ pet.url }}" width=200px height=250px>
+            <h3>{{ pet.name }}</h3>
+        </div>
+    </li>
+</ul>
+
 {% else %}
+
 Hello, World!
+
 {% endif %}
 
 {% endblock content %}
