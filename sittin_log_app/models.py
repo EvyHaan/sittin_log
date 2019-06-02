@@ -50,7 +50,7 @@ class Pet(models.Model):
     family = models.ForeignKey(Family, on_delete=models.CASCADE, related_name='pet', null=True)
 
     pet_name = models.CharField(max_length=48)
-    pet_photo_url = models.URLField(max_length=500)
+    pet_photo_url = models.CharField(max_length=1000)
     bio = models.CharField(max_length=255)
 
     animal_type = models.CharField(choices=TYPES, default='Animal', max_length=48)

@@ -8,15 +8,7 @@ Sittin' Log - HOME
 
 {% if user.is_authenticated %}
 
-{% for pet in pets %}
-<ul>
-    <li>
-        <div>
-            <img src="{{ pet.url }}" width=200px height=250px>
-            <h3>{{ pet.name }}</h3>
-        </div>
-    </li>
-</ul>
+<h2>Should get redirected to '/pets!'</h2>
 
 {% else %}
 
