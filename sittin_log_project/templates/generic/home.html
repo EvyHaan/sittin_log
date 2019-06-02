@@ -5,10 +5,15 @@ Sittin' Log - HOME
 {% endblock title %}
 
 {% block content %}
+
 {% if user.is_authenticated %}
-This will have all the pets!
+
+<h2>Should get redirected to '/pets!'</h2>
+
 {% else %}
+
 Hello, World!
+
 {% endif %}
 
 {% endblock content %}
