@@ -1,10 +1,12 @@
 from django.urls import path
-from .views import PetListView, PetDetailView, FamilyListView, FamilyDetailView
+from .views import PetListView, PetDetailView, PetDeleteView, FamilyListView, FamilyDetailView, FamilyDeleteView
 
 urlpatterns = [
     path('', PetListView.as_view(), name='pet_list'),
     path('pet/<int:pk>',PetDetailView.as_view(), name='pet_detail'),
+    path('pet/<int:pk>/remove', PetDeleteView.as_view(), name='pet_delete'),
 
     path('families/', FamilyListView.as_view(), name='family_list'),
-    path('families/<int:pk>',FamilyDetailView.as_view(), name='family_detail'),
+    path('family/<int:pk>',FamilyDetailView.as_view(), name='family_detail'),
+    path('family/<int:pk>/remove', FamilyDeleteView.as_view(), name='family_delete'),
 ]

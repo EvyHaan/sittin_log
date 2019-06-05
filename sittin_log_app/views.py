@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, DeleteView
 from django.urls import reverse_lazy
 from sittin_log_app.models import Pet, Family
 
@@ -34,6 +34,14 @@ class PetDetailView(LoginRequiredMixin, DetailView):
         return context
 
 
+class PetDeleteView(LoginRequiredMixin, DeleteView):
+
+    template_name = './pet_delete.html'
+    model = Pet
+    context_object_name = 'pet'
+    success_url = reverse_lazy('pet_list')
+
+
 # Family Views
 class FamilyListView(LoginRequiredMixin, ListView):
 
@@ -45,6 +53,7 @@ class FamilyListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Family.objects.filter(user_id=self.request.user.id)
+
 
 class FamilyDetailView(LoginRequiredMixin, DetailView):
 
@@ -60,3 +69,11 @@ class FamilyDetailView(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['family'] = Family.objects.get(pk=self.kwargs['pk'])
         return context
+
+
+class FamilyDeleteView(LoginRequiredMixin, DeleteView):
+
+    template_name = './family_delete.html'
+    model = Family
+    context_object_name = 'family'
+    success_url = reverse_lazy('family_list')

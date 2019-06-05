@@ -28,4 +28,6 @@ Sittin' Log - {{ family.family_name }}
 <p>{{ family.vet_phone }}</p>
 <p>{{ family.vet_address }}</p>
 
+<a href="{% url 'family_delete' family.id %}">Remove</a>
+
 {% endblock content %}
