@@ -9,7 +9,7 @@ Sittin' Log - PETS
 {% for pet in pets %}
 <div>
     <img src="{{ pet.pet_photo_url }}" width=200px height=250px>
-    <h3>{{ pet.pet_name }}</h3>
+    <a href="{% url 'pet_detail' pet.id %}"><h3>{{ pet.pet_name }}</h3></a>
 </div>
 {% endfor %}
 

@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.urls import reverse_lazy
 from sittin_log_app.models import Pet, Family
 
 
+# Pet Views
 class PetListView(LoginRequiredMixin, ListView):
 
     template_name = './pet_list.html'
@@ -16,6 +17,24 @@ class PetListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Pet.objects.filter(family__user_id=self.request.user.id)
 
+
+class PetDetailView(LoginRequiredMixin, DetailView):
+
+    template_name = './pet_detail.html'
+    model = Pet
+    context_object_name = 'pet'
+    login_url = reverse_lazy('login')
+
+    def get_queryset(self):
+        return Pet.objects.filter(family__id=self.kwargs['pk'])
+    
+    def get_context_data(self, **kwargs):
+        context=super().get_context_data(**kwargs)
+        context['pet'] = Pet.objects.get(pk=self.kwargs['pk'])
+        return context
+
+
+# Family Views
 class FamilyListView(LoginRequiredMixin, ListView):
 
     template_name = './family_list.html'
