@@ -29,7 +29,7 @@ class PetDetailView(LoginRequiredMixin, DetailView):
         return Pet.objects.filter(family__id=self.kwargs['pk'])
     
     def get_context_data(self, **kwargs):
-        context=super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['pet'] = Pet.objects.get(pk=self.kwargs['pk'])
         return context
 
@@ -45,3 +45,18 @@ class FamilyListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Family.objects.filter(user_id=self.request.user.id)
+
+class FamilyDetailView(LoginRequiredMixin, DetailView):
+
+    template_name = './family_detail.html'
+    model = Family
+    context_object_name = 'family'
+    login_url = reverse_lazy('login')
+
+    def get_queryset(self):
+        return Family.objects.filter(id=self.kwargs['pk'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['family'] = Family.objects.get(pk=self.kwargs['pk'])
+        return context

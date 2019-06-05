@@ -1,0 +1,31 @@
+{% extends 'generic/base.html' %}
+
+{% block title %}
+Sittin' Log - {{ family.family_name }}
+{% endblock title %}
+
+{% block content %}
+
+<h2>{{ family.family_name }}</h2>
+<p>{{ family.family_address }}</p>
+
+<p>Main Contact</p>
+<p>{{ family.contact1 }}</p>
+<p>{{ family.contact1_phone }}</p>
+<p>{{ family.contact1_email }}</p>
+
+<p>Secondary Contact</p>
+<p>{{ family.contact2 }}</p>
+<p>{{ family.contact2_phone }}</p>
+<p>{{ family.contact2_email }}</p>
+
+<p>Emergency Contact</p>
+<p>{{ family.emergency_contact }}</p>
+<p>{{ family.emergency_contact_phone }}</p>
+
+<p>Vet Info</p>
+<p>{{ family.vet_clinic }}</p>
+<p>{{ family.vet_phone }}</p>
+<p>{{ family.vet_address }}</p>
+
+{% endblock content %}
