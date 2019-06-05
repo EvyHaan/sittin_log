@@ -6,6 +6,8 @@ Sittin' Log - PETS
 
 {% block content %}
 
+<a href="{% url 'pet_create' %}">Add New Pet!</a>
+
 {% for pet in pets %}
 <div>
     <img src="{{ pet.pet_photo_url }}" width=200px height=250px>

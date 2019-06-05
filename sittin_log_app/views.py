@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, DeleteView
+from django.views.generic import ListView, DetailView, DeleteView, CreateView
 from django.urls import reverse_lazy
 from sittin_log_app.models import Pet, Family
+from sittin_log_app.forms import PetForm
 
 
 # Pet Views
@@ -32,6 +33,19 @@ class PetDetailView(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['pet'] = Pet.objects.get(pk=self.kwargs['pk'])
         return context
+
+
+class PetCreateView(LoginRequiredMixin, CreateView):
+
+    template_name = './pet_create.html'
+    model = Pet
+    form_class = PetForm
+    success_url = reverse_lazy('pet_list')
+    login_url = reverse_lazy('auth_login')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class PetDeleteView(LoginRequiredMixin, DeleteView):
