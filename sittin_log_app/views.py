@@ -41,7 +41,7 @@ class PetCreateView(LoginRequiredMixin, CreateView):
     model = Pet
     form_class = PetForm
     success_url = reverse_lazy('pet_list')
-    login_url = reverse_lazy('auth_login')
+    login_url = reverse_lazy('login')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
