@@ -27,7 +27,7 @@ class PetDetailView(LoginRequiredMixin, DetailView):
     login_url = reverse_lazy('login')
 
     def get_queryset(self):
-        return Pet.objects.filter(family__id=self.kwargs['pk'])
+        return Pet.objects.filter(id=self.kwargs['pk'])
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -41,7 +41,7 @@ class PetCreateView(LoginRequiredMixin, CreateView):
     model = Pet
     form_class = PetForm
     success_url = reverse_lazy('pet_list')
-    login_url = reverse_lazy('auth_login')
+    login_url = reverse_lazy('login')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
