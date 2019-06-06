@@ -1,0 +1,15 @@
+{% extends 'generic/base.html' %}
+
+{% block title %}
+Sittin' Log - NEW PET
+{% endblock title %}
+
+{% block content %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create</button>
+</form>
+
+{% endblock content %}

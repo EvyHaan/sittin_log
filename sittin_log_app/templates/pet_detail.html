@@ -1,0 +1,19 @@
+{% extends 'generic/base.html' %}
+
+{% block title %}
+Sittin' Log - DETAILS
+{% endblock title %}
+
+{% block content %}
+
+<img src="{{ pet.pet_photo_url }}" width=200px height=250px>
+<h2>{{ pet.pet_name }}, {{ pet.age }}</h2>
+<p><a href="{% url 'family_detail' pet.family_id %}">{{ pet.family }}</a></p>
+<p>Bio: {{ pet.bio }}</p>
+<p>Feeding: {{ pet.feeding_notes }}</p>
+<p>Care: {{ pet.care_routine }}</p>
+<p>Additional Notes: {{ pet.other_info }}</p>
+
+<a href="{% url 'pet_delete' pet.id %}">Remove</a>
+
+{% endblock content %}

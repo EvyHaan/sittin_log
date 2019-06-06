@@ -16,6 +16,7 @@
                 {% if user.is_superuser %}
                 <li><a href="{% url 'admin:index' %}">ADMIN</a></li>
                 {% endif %}
+                <li><a href="{% url 'family_list' %}">FAMILIES</a></li>
                 <li><a href="{% url 'logout' %}">LOGOUT</a></li>
                 {% else %}
                 <li><a href="{% url 'login' %}">SIGN IN</a></li>

@@ -1,0 +1,15 @@
+{% extends 'generic/base.html' %}
+
+{% block title %}
+Sittin' Log - FAMILIES
+{% endblock title %}
+
+{% block content %}
+
+{% for family in families %}
+<div>
+    <h3><a href="{% url 'family_detail' family.id %}">{{ family.family_name }}</a></h3>
+</div>
+{% endfor %}
+
+{% endblock content %}

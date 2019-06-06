@@ -1,0 +1,16 @@
+{% extends 'generic/base.html' %}
+
+{% block title %}
+Sittin' Log - REMOVE
+{% endblock title %}
+
+{% block content %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <img src="{{ pet.pet_photo_url }}" width=200px height=250px>
+    <p>Are you sure you want to remove {{ pet.pet_name }}?</p>
+    <input type="submit" value="Remove"/>
+</form>
+
+{% endblock content %}
