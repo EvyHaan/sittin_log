@@ -6,6 +6,8 @@ Sittin' Log - FAMILIES
 
 {% block content %}
 
+<a href="{% url 'family_create' %}">Add New Family!</a>
+
 {% for family in families %}
 <div>
     <h3><a href="{% url 'family_detail' family.id %}">{{ family.family_name }}</a></h3>
