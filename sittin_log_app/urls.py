@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import PetListView, PetDetailView, PetCreateView, PetDeleteView, FamilyListView, FamilyDetailView, FamilyDeleteView
+from .views import PetListView, PetDetailView, PetCreateView, PetDeleteView, FamilyListView, FamilyDetailView, FamilyCreateView, FamilyDeleteView
 
 urlpatterns = [
     path('', PetListView.as_view(), name='pet_list'),
@@ -9,5 +9,6 @@ urlpatterns = [
 
     path('families', FamilyListView.as_view(), name='family_list'),
     path('family/<int:pk>',FamilyDetailView.as_view(), name='family_detail'),
+    path('family/create', FamilyCreateView.as_view(), name='family_create'),
     path('family/<int:pk>/remove', FamilyDeleteView.as_view(), name='family_delete'),
 ]

@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, DeleteView, CreateView
 from django.urls import reverse_lazy
 from sittin_log_app.models import Pet, Family
-from sittin_log_app.forms import PetForm
+from sittin_log_app.forms import PetForm, FamilyForm
 
 
 # Pet Views
@@ -83,6 +83,19 @@ class FamilyDetailView(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['family'] = Family.objects.get(pk=self.kwargs['pk'])
         return context
+
+
+class FamilyCreateView(LoginRequiredMixin, CreateView):
+
+    template_name = './family_create.html'
+    model = Family
+    form_class = FamilyForm
+    success_url = reverse_lazy('family_list')
+    login_url = reverse_lazy('login')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class FamilyDeleteView(LoginRequiredMixin, DeleteView):
