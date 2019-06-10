@@ -8,7 +8,7 @@ autopep8 = "*"
 
 [packages]
 psycopg2-binary = "*"
-django = "*"
+django = "2.2.2"
 django-registration = "*"
 
 [requires]
