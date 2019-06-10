@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, DeleteView, CreateView
+from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
 from django.urls import reverse_lazy
 from sittin_log_app.models import Pet, Family
 from sittin_log_app.forms import PetForm, FamilyForm
@@ -43,6 +43,27 @@ class PetCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('pet_list')
     login_url = reverse_lazy('login')
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class PetUpdateView(LoginRequiredMixin, UpdateView):
+
+    template_name = './pet_create.html'
+    model = Pet
+    form_class = PetForm
+    success_url = reverse_lazy('pet_list')
+    login_url = reverse_lazy('login')
+
+    def get_queryset(self):
+        return Pet.objects.filter(id=self.kwargs['pk'])
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['pet'] = Pet.objects.get(pk=self.kwargs['pk'])
+        return context
+    
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
@@ -92,6 +113,27 @@ class FamilyCreateView(LoginRequiredMixin, CreateView):
     form_class = FamilyForm
     success_url = reverse_lazy('family_list')
     login_url = reverse_lazy('login')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class FamilyUpdateView(LoginRequiredMixin, UpdateView):
+
+    template_name = './family_create.html'
+    model = Family
+    form_class = FamilyForm
+    success_url = reverse_lazy('family_list')
+    login_url = reverse_lazy('login')
+
+    def get_queryset(self):
+        return Family.objects.filter(id=self.kwargs['pk'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['family'] = Family.objects.get(pk=self.kwargs['pk'])
+        return context
 
     def form_valid(self, form):
         form.instance.user = self.request.user

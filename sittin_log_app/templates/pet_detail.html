@@ -14,6 +14,7 @@ Sittin' Log - DETAILS
 <p>Care: {{ pet.care_routine }}</p>
 <p>Additional Notes: {{ pet.other_info }}</p>
 
+<a href="{% url 'pet_edit' pet.id %}">Update</a>
 <a href="{% url 'pet_delete' pet.id %}">Remove</a>
 
 {% endblock content %}
