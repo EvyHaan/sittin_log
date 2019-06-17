@@ -16,12 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .views import home_view
-
+from django.contrib.auth.decorators import user_passes_test
 
 urlpatterns = [
     path('accounts/', include('django_registration.backends.activation.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path('', home_view, name='home'),
-    path('profile/', include('sittin_log_app.urls'))
+    path('profile/', include('sittin_log_app.urls')),
 ]
